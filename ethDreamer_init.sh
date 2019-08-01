@@ -1,6 +1,8 @@
 #!/bin/bash
-for i in $(echo /home/vagrant/armbian/hardened_userpatches/*); do
-        fname=$(echo $i | sed 's/.*hardened_userpatches\///');
-        ln -s $i /home/vagrant/armbian/userpatches/$fname;
+armdir=/home/vagrant/armbian
+hard=hardened_userpatches
+for i in $(cd $armdir/$hard && echo *); do
+        dir=$pwd;
+        cd $armdir/userpatches && ln -s ../$hard/$i . && cd $dir;
 done
 
