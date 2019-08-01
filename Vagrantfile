@@ -6,10 +6,11 @@ Vagrant.require_version ">= 1.5"
 $provisioning_script = <<SCRIPT
 # use remote git version instead of sharing a copy from host to preserve proper file permissions
 # and prevent permission related issues for the temp directory
-git clone https://github.com/armbian/build /home/vagrant/armbian
+git clone --single-branch --branch hardened https://github.com/ethDreamer/build /home/vagrant/armbian
 mkdir -p /vagrant/output /vagrant/userpatches
 ln -sf /vagrant/output /home/vagrant/armbian/output
 ln -sf /vagrant/userpatches /home/vagrant/armbian/userpatches
+/home/vagrant/armbian/ethDreamer_init.sh
 SCRIPT
 
 Vagrant.configure(2) do |config|
